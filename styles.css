@@ -10,8 +10,63 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     text-align: center;
+    /* Removed 'overflow: hidden' to allow scrolling */
 }
 
+/* Ensure full-screen background with an image that has 20% opacity */
+body::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    width: 80%; /* Adjust the size of the image */
+    height: 80%; /* Adjust the size of the image */
+    background-image: url('1001458260.png'); /* Replace with your image URL */
+    background-size: contain; /* Scale the image to fit within the container without cropping */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
+    opacity: 0.2; /* 20% opacity */
+    animation: rotateBackground 20s linear infinite; /* Animation to rotate the background */
+    z-index: -1; /* Make sure it’s behind other content */
+    transform: translate(-50%, -50%); /* Adjust position to keep it centered */
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: -30%; /* Adjusted position */
+    left: -30%; /* Adjusted position */
+    width: 80%; /* Adjust the size of the image */
+    height: 80%; /* Adjust the size of the image */
+    background-image: url('1001458260.png'); /* Same image */
+    background-size: contain; /* Scale the image to fit within the container without cropping */
+    background-position: center; /* Center the image within the container */
+    background-repeat: no-repeat; /* Prevent tiling */
+    opacity: 0.2; /* 20% opacity */
+    z-index: -1; /* Make sure it’s behind other content */
+    animation: rotateBackground 20s linear infinite; /* Add rotation animation */
+    transform-origin: center; /* Ensure it rotates around its center */
+}
+
+/* Keyframes for rotating the background */
+@keyframes rotateBackground {
+    0% {
+        transform: rotate(0deg); /* Start with 0 degrees */
+    }
+    100% {
+        transform: rotate(360deg); /* End with 360 degrees */
+    }
+}
+
+/* Style for content */
+section {
+    z-index: 1; /* Ensure content is on top of the background */
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Section styles */
 section#home {
     margin-top: 40px;
 }
@@ -73,6 +128,7 @@ div p {
     font-size: 1.1em;
     color: #bbb;
 }
+
 .certificate-link {
     color: gray; /* Default text color */
     text-decoration: none; /* Remove underline */
@@ -84,6 +140,7 @@ div p {
     color: #00bfff; /* Light blue glow effect */
     text-shadow: 0 0 10px #00bfff; /* Blue glowing effect */
 }
+
 .social-icon {
     font-size: 30px; /* Adjust icon size */
     margin: 10px; /* Space between icons */
@@ -113,11 +170,9 @@ h1 {
     font-size: 2em;
     opacity: 0; /* Initially hidden */
     animation: fadeIn 1.5s ease-in-out forwards; /* Apply animation */
-    margin-top: 20px;
-    font-size: 2em;
-    }
+}
 
-    /* Typing animation */
+/* Typing animation */
 @keyframes typing {
     from {
         width: 0;
@@ -150,66 +205,4 @@ h1 {
     width: 0;  /* Start with no text showing */
     
     animation: typing 4s steps(40) 1s forwards, floating 3s ease-in-out infinite; /* Combine typing and floating */
-}
-
-/* Create a full-screen background with an image that has 20% opacity */
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    position: relative;
-    background-color: #111; /* Background color for fallback */
-    overflow: hidden; /* Prevent scrolling */
-}
-
-/* The background image */
-body::before {
-    content: "";
-    position: absolute;
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    width: 80%; /* Adjust the size of the image */
-    height: 80%; /* Adjust the size of the image */
-    background-image: url('1001458260.png'); /* Replace with your image URL */
-    background-size: contain; /* Scale the image to fit within the container without cropping */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent tiling */
-    opacity: 0.2; /* 20% opacity */
-    animation: rotateBackground 20s linear infinite; /* Animation to rotate the background */
-    z-index: -1; /* Make sure it’s behind other content */
-    transform: translate(-50%, -50%); /* Adjust position to keep it centered */
-}
-body::after {
-    content: "";
-    position: absolute;
-    top: -30%; /* Adjusted position */
-    left: -30%; /* Adjusted position */
-    width: 80%; /* Adjust the size of the image */
-    height: 80%; /* Adjust the size of the image */
-    background-image: url('1001458260.png'); /* Same image */
-    background-size: contain; /* Scale the image to fit within the container without cropping */
-    background-position: center; /* Center the image within the container */
-    background-repeat: no-repeat; /* Prevent tiling */
-    opacity: 0.2; /* 20% opacity */
-    z-index: -1; /* Make sure it’s behind other content */
-    animation: rotateBackground 20s linear infinite; /* Add rotation animation */
-    transform-origin: center; /* Ensure it rotates around its center */
-}
-
-/* Keyframes for rotating the background */
-@keyframes rotateBackground {
-    0% {
-        transform: rotate(0deg); /* Start with 0 degrees */
-    }
-    100% {
-        transform: rotate(360deg); /* End with 360 degrees */
-    }
-}
-
-/* Style for content */
-section {
-    z-index: 1; /* Ensure content is on top of the background */
-    color: white;
-    text-align: center;
-    padding: 20px;
 }
