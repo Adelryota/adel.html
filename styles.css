@@ -1,80 +1,227 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    /* Removed 'overflow: hidden' to allow scrolling */
+}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adel The Snow</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        function toggleSection(id) {
-            var section = document.getElementById(id);
-            if (section.style.maxHeight) {
-                section.style.maxHeight = null;
-                section.classList.remove('show');
-            } else {
-                section.style.maxHeight = section.scrollHeight + "px";
-                section.classList.add('show');
-            }
-        }
-    </script>
-</head>
-<body>
-    <section id="home">
-        <img src="me.jpg" alt="ADEL KAMAL">
-        <h1>ADEL KAMAL</h1>
-        <p class="typing-floating">A CS student/self taught coder. Striving to expand my knowledge in this field.</p>
-    </section>
+/* Ensure full-screen background with an image that has 20% opacity */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px; /* You can adjust size */
+    height: 300px;
+    background-image: url('1001458260.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+    animation: floatRandom 30s infinite ease-in-out;
+}
+
+
+
+/*
+ body::after {
+    content: "";
+    position: absolute;
+    top: -30%; 
+    left: -30%; 
+    width: 80%; 
+    height: 80%; 
+    background-image: url('1001458260.png'); 
+    background-size: contain; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    opacity: 0.2; 
+    transform-origin: center; 
+}
+*/
+
+/* Keyframes for rotating the background */
+@keyframes rotateBackground {
+    0% {
+        transform: rotate(0deg); /* Start with 0 degrees */
+    }
+    100% {
+        transform: rotate(360deg); /* End with 360 degrees */
+    }
+}
+
+/* Style for content */
+section {
+    z-index: 1; /* Ensure content is on top of the background */
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Section styles */
+section#home {
+    margin-top: 40px;
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+p {
+    font-size: 1.2em;
+    color: #bbb;
+}
+
+footer {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: auto;
+    padding: 10px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+/* Glow and scale effect for h2 */
+h2 {
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+}
+
+h2:hover {
+    color: #00bfff; /* Light blue color */
+    text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff; /* Glow effect */
+    transform: scale(1.1); /* Make text 10% larger on hover */
+}
+
+.section-content {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.section-content.show {
+    max-height: 500px;
+    opacity: 1;
+    padding: 10px;
+    pointer-events: auto;
+}
+
+
+div p {
+    font-size: 1.1em;
+    color: #bbb;
+}
+
+.certificate-link {
+    color: gray; /* Default text color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.certificate-link:hover {
+    color: #00bfff; /* Light blue glow effect */
+    text-shadow: 0 0 10px #00bfff; /* Blue glowing effect */
+}
+
+.social-icon {
+    font-size: 30px; /* Adjust icon size */
+    margin: 10px; /* Space between icons */
+    color: gray; /* Default icon color */
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    text-decoration: none; /* Remove underline */
+}
+
+.social-icon:hover {
+    color: #00bfff; /* Light blue glow effect */
+    text-shadow: 0 0 10px #00bfff; /* Glow effect */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start invisible */
+        transform: translateY(-20px); /* Move slightly up */
+    }
+    to {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Return to normal position */
+    }
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 2em;
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 1.5s ease-in-out forwards; /* Apply animation */
+}
+
+/* Typing animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Floating animation */
+@keyframes floating {
+    0% {
+        transform: translateY(0); /* Start position */
+    }
+    50% {
+        transform: translateY(-10px); /* Float upwards */
+    }
+    100% {
+        transform: translateY(0); /* Back to original position */
+    }
+}
+
+/* Apply animations to the specific paragraph with the "typing-floating" class */
+.typing-floating {
+    font-size: 1.2em;
+    color: #bbb;
+    overflow: hidden;  /* Hide the text overflow */
+    white-space: nowrap; /* Prevent wrapping of text */
+    border-right: 2px solid white;  /* Simulates the typing cursor */
+    width: 0;  /* Start with no text showing */
     
-    <h2 onclick="toggleSection('services')">Services</h2>
-    <div id="services" class="section-content">
-        <p>Web Developer<br>
-    </div>
-    
-    <h2 onclick="toggleSection('certificates')">Certificates</h2>
-    <div id="certificates" class="section-content">
-        <p>
-            <a href="https://www.coursera.org/account/accomplishments/certificate/JDQ3288LFE83" target="_blank" class="certificate-link">
-                Foundations of Cybersecurity
-            </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="https://www.coursera.org/account/accomplishments/certificate/AYWBRVX2WB28" target="_blank" class="certificate-link">
-                Play It Safe: Manage Security Risks
-            </a> 
-            <br><br>
-            <a href="https://www.coursera.org/account/accomplishments/certificate/4GGJGVKPRWVB" target="_blank" class="certificate-link">
-                Connect and Protect: Networks and Network Security
-            </a>
-        </p>
-    </div>
-    
-    
-    
-    <h2 onclick="toggleSection('projects')">Projects</h2>
-    <div id="projects" class="section-content">
-       <p></p>
-    </div>
-    
-    <h2 onclick="toggleSection('contact')">Contact Me</h2>
-    <div id="contact" class="section-content">
-        <p>You can contact me using the following socials</p>
-        <a href="https://www.instagram.com/lelo_adel21" class="social-icon" target="_blank">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://twitter.com/Wannabe2Adel" class="social-icon" target="_blank">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://wa.me/+966509257143" class="social-icon" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
-    
-    <footer>
-        &copy; <span id="year"></span> ADEL KAMAL
-    </footer>
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-</body>
-</html>
+    animation: typing 4s steps(40) 1s forwards, floating 3s ease-in-out infinite; /* Combine typing and floating */
+}
+@keyframes floatRandom {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(50vw, 10vh);
+    }
+    50% {
+        transform: translate(30vw, 60vh);
+    }
+    75% {
+        transform: translate(70vw, 30vh);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
