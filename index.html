@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adel The Snow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <script>
         function toggleSection(id) {
-            var section = document.getElementById(id);
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                if (section.id !== id && section.classList.contains('show')) {
+                    section.style.maxHeight = null;
+                    section.classList.remove('show');
+                }
+            });
+
+            const section = document.getElementById(id);
             if (section.style.maxHeight) {
                 section.style.maxHeight = null;
                 section.classList.remove('show');
@@ -22,56 +29,62 @@
 </head>
 <body>
     <section id="home">
-        <img src="me.jpg" alt="ADEL KAMAL">
-        <h1>ADEL KAMAL</h1>
+        <img src="me.jpg" alt="ADIL KAMAL">
+        <h1>ADIL KAMAL</h1>
         <p class="typing-floating">A CS student/self taught coder. Striving to expand my knowledge in this field.</p>
     </section>
     
-    <h2 onclick="toggleSection('services')">Services</h2>
+    <h2 onclick="toggleSection('services')">
+        <i class="fas fa-code"></i> Services
+    </h2>
     <div id="services" class="section-content">
-        <p>Web Developer<br>
+        <p>Web Developer</p>
     </div>
     
-    <h2 onclick="toggleSection('certificates')">Certificates</h2>
+    <h2 onclick="toggleSection('certificates')">
+        <i class="fas fa-certificate"></i> Certificates
+    </h2>
     <div id="certificates" class="section-content">
-        <p>
+        <div class="certificates-grid">
             <a href="https://www.coursera.org/account/accomplishments/certificate/JDQ3288LFE83" target="_blank" class="certificate-link">
-                Foundations of Cybersecurity
+                <i class="fas fa-shield-alt"></i> Foundations of Cybersecurity
             </a>
-            &nbsp;&nbsp;&nbsp;&nbsp;
             <a href="https://www.coursera.org/account/accomplishments/certificate/AYWBRVX2WB28" target="_blank" class="certificate-link">
-                Play It Safe: Manage Security Risks
-            </a> 
-            <br><br>
-            <a href="https://www.coursera.org/account/accomplishments/certificate/4GGJGVKPRWVB" target="_blank" class="certificate-link">
-                Connect and Protect: Networks and Network Security
+                <i class="fas fa-lock"></i> Play It Safe: Manage Security Risks
             </a>
-        </p>
+            <a href="https://www.coursera.org/account/accomplishments/certificate/4GGJGVKPRWVB" target="_blank" class="certificate-link">
+                <i class="fas fa-network-wired"></i> Connect and Protect: Networks and Network Security
+            </a>
+        </div>
     </div>
     
-    
-    
-    <h2 onclick="toggleSection('projects')">Projects</h2>
+    <h2 onclick="toggleSection('projects')">
+        <i class="fas fa-project-diagram"></i> Projects
+    </h2>
     <div id="projects" class="section-content">
-       <p></p>
+        <p>Coming soon...</p>
     </div>
     
-    <h2 onclick="toggleSection('contact')">Contact Me</h2>
+    <h2 onclick="toggleSection('contact')">
+        <i class="fas fa-envelope"></i> Contact Me
+    </h2>
     <div id="contact" class="section-content">
-        <p>You can contact me using the following socials</p>
-        <a href="https://www.instagram.com/lelo_adel21" class="social-icon" target="_blank">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://twitter.com/Wannabe2Adel" class="social-icon" target="_blank">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://wa.me/+966509257143" class="social-icon" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+        <p>You can contact me using the following socials:</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/lelo_adel22" class="social-icon" target="_blank" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://twitter.com/Wannabe2Adel" class="social-icon" target="_blank" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://wa.me/+966509257143" class="social-icon" target="_blank" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
     </div>
     
     <footer>
-        &copy; <span id="year"></span> ADEL KAMAL
+        &copy; <span id="year"></span> ADEL KAMAL></i>
     </footer>
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
